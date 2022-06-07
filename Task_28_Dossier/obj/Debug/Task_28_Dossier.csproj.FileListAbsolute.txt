@@ -1,0 +1,8 @@
+C:\Users\danii\YandexDisk\Файлы на компьютер\Gamedev\ЯЮниор\Задачи\Task_28_Dossier\Task_28_Dossier\bin\Debug\Task_28_Dossier.exe.config
+C:\Users\danii\YandexDisk\Файлы на компьютер\Gamedev\ЯЮниор\Задачи\Task_28_Dossier\Task_28_Dossier\bin\Debug\Task_28_Dossier.exe
+C:\Users\danii\YandexDisk\Файлы на компьютер\Gamedev\ЯЮниор\Задачи\Task_28_Dossier\Task_28_Dossier\bin\Debug\Task_28_Dossier.pdb
+C:\Users\danii\YandexDisk\Файлы на компьютер\Gamedev\ЯЮниор\Задачи\Task_28_Dossier\Task_28_Dossier\obj\Debug\Task_28_Dossier.csproj.AssemblyReference.cache
+C:\Users\danii\YandexDisk\Файлы на компьютер\Gamedev\ЯЮниор\Задачи\Task_28_Dossier\Task_28_Dossier\obj\Debug\Task_28_Dossier.csproj.SuggestedBindingRedirects.cache
+C:\Users\danii\YandexDisk\Файлы на компьютер\Gamedev\ЯЮниор\Задачи\Task_28_Dossier\Task_28_Dossier\obj\Debug\Task_28_Dossier.csproj.CoreCompileInputs.cache
+C:\Users\danii\YandexDisk\Файлы на компьютер\Gamedev\ЯЮниор\Задачи\Task_28_Dossier\Task_28_Dossier\obj\Debug\Task_28_Dossier.exe
+C:\Users\danii\YandexDisk\Файлы на компьютер\Gamedev\ЯЮниор\Задачи\Task_28_Dossier\Task_28_Dossier\obj\Debug\Task_28_Dossier.pdb
