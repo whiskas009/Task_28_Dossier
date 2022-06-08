@@ -22,35 +22,19 @@ namespace Task_28_Dossier
                 switch (userInput)
                 {
                     case 1:
-                        Console.WriteLine("\nВведите фамилию: \n");
-                        string surname = Console.ReadLine();
-                        Console.WriteLine("\nВведите должность: \n");
-                        string post = Console.ReadLine();
-                        Archive(surname, post, ref listSurname, ref listPost);
+                        Create(ref listSurname, ref listPost);
                         break;
 
                     case 2:
-                        Archive (listSurname, listPost);
+                        Output (listSurname, listPost);
                         break;
 
                     case 3:
-                        if (listSurname.Length != 0)
-                        {
-                            Console.WriteLine("\nВведите фамилию: \n");
-                            string surnameDelete = Console.ReadLine();
-                            Archive(surnameDelete, ref listSurname, ref listPost);
-                        }
-                        else Console.WriteLine("\nВ досье ещё нет данных\n");
+                        Delete(ref listSurname, ref listPost);  
                         break;
 
                     case 4:
-                        if (listSurname.Length != 0)
-                        {
-                            Console.WriteLine("\nВведите фамилию: \n");
-                            string surnameSearch = Console.ReadLine();
-                            Archive(surnameSearch, listSurname, listPost);
-                        }
-                        else Console.WriteLine("\nВ досье ещё нет данных\n");
+                        Search(listSurname, listPost);
                         break;
 
                     case 0:
@@ -60,70 +44,97 @@ namespace Task_28_Dossier
             }
         }
 
-        static void Archive (string surname, string post, ref string[] listSurname, ref string[] listPost)
+        static void Create (ref string[] firstArray, ref string[] secondArray)
         {
-            string[] temp = new string[listSurname.Length + 1];
-
-            for (int i = 0; i < listSurname.Length; i++)
-            {
-                temp[i] = listSurname[i];
-            }
-            
-            temp[temp.Length - 1] = surname;
-            listSurname = temp;
-
-            temp = new string[listPost.Length + 1];
-
-            for (int i = 0; i < listPost.Length; i++)
-            {
-                temp[i] = listPost[i];
-            }
-
-            temp[temp.Length - 1] = post;
-            listPost = temp;
+            Console.WriteLine("\nВведите фамилию: \n");
+            string surname = Console.ReadLine();
+            Expansion(surname, ref firstArray);
+            Console.WriteLine("\nВведите должность: \n");
+            string post = Console.ReadLine();
+            Expansion(post, ref secondArray);
 
             Console.WriteLine("\nДанные добавлены!");
         }
-        static void Archive (string surnameDelete, ref string[] listSurname, ref string[] listPost)
+        static void Delete (ref string[] firstArray, ref string[] secondArray)
         {
-            string[] temp1 = new string[listSurname.Length - 1];
-            string[] temp2 = new string[listSurname.Length - 1];
-            int position = 0;
+            Console.WriteLine("\nВведите номер досье для удаления: \n");
+            int numberDelete = int.Parse(Console.ReadLine());
+            Reduction(numberDelete, ref firstArray);
+            Reduction(numberDelete, ref secondArray);
 
-            for (int i = 0; i < listSurname.Length; i++)
-            {
-                if (listSurname[i] != surnameDelete)
-                {
-                    temp1[position] = listSurname[i];
-                    temp2[position] = listPost[i];
-                    position++;
-                }  
-            }
-
-            listSurname = temp1;
-            listPost = temp2;
-
-            Console.WriteLine("\nДосье удалено!");
+            Console.WriteLine("\nДанные удалены!");
         }
-        static void Archive (string[] listSurname, string[] listPost)
+        static void Expansion (string word, ref string[] array)
         {
-            for (int i = 0; i < listSurname.Length; i++)
+            string[] temp = new string[array.Length + 1];
+
+            for (int i = 0; i < array.Length; i++)
             {
-                Console.WriteLine($"{i + 1}. {listSurname[i]}-{listPost[i]}");
+                temp[i] = array[i];
             }
+            
+            temp[temp.Length - 1] = word;
+            array = temp;
         }
-        static void Archive (string surnameSearch, string[] listSurname, string[] listPost)
+        static void Output (string[] firstArray, string[] secondArray)
         {
-            for (int i = 0; i < listSurname.Length; i++)
+            if (firstArray.Length != 0)
             {
-                if (listSurname[i] == surnameSearch)
+                for (int i = 0; i < firstArray.Length; i++)
                 {
-                    Console.WriteLine("\nНайдено следующее: \n");
-                    Console.WriteLine($"{i + 1}. {listSurname[i]}-{listPost[i]}");
-                    return;
+                    Console.WriteLine($"{i + 1}. {firstArray[i]}-{secondArray[i]}");
                 }
             }
-            Console.WriteLine("\nФамилия не найдена\n");
+            else Console.WriteLine("\nВ досье ещё нет данных\n");
+        }
+        static void Reduction (int numberDelete, ref string[] array)
+        {
+            if (array.Length != 0)
+            {
+                string[] temp = new string[array.Length - 1];
+                int position = 0;
+
+                for (int i = 0; i < array.Length; i++)
+                {
+                    if (i != (numberDelete -1))
+                    {
+                        temp[position] = array[i];
+                        position++;
+                    }
+                }
+
+                array = temp;
+
+            }
+            else Console.WriteLine("\nВ досье ещё нет данных\n");
+        }
+        static void Search (string[] firstArray, string[] secondArray)
+        {
+            if (firstArray.Length != 0)
+            {
+                Console.WriteLine("\nВведите фамилию: \n");
+                string surnameSearch = Console.ReadLine();
+                bool found = true;
+                bool found2 = true;
+
+                for (int i = 0; i < firstArray.Length; i++)
+                {
+                    if (firstArray[i] == surnameSearch)
+                    {
+                        if (found2 == true)
+                        {
+                            Console.WriteLine("\nНайдено следующее: \n");
+                            found2 = false;
+                        }
+                        Console.WriteLine($"{i + 1}. {firstArray[i]}-{secondArray[i]}");
+                        found = false;
+                    }
+                }
+                if (found == true)
+                    Console.WriteLine("\nФамилия не найдена\n");
+
+            }
+            else Console.WriteLine("\nВ досье ещё нет данных\n");
         }
     }
 }
