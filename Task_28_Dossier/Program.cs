@@ -85,7 +85,10 @@ namespace Task_28_Dossier
                     Console.WriteLine($"{i + 1}. {firstArray[i]}-{secondArray[i]}");
                 }
             }
-            else Console.WriteLine("\nВ досье ещё нет данных\n");
+            else 
+            {
+                Console.WriteLine("\nВ досье ещё нет данных\n");
+            } 
         }
         static void Reduction (int numberDelete, ref string[] array)
         {
@@ -96,7 +99,7 @@ namespace Task_28_Dossier
 
                 for (int i = 0; i < array.Length; i++)
                 {
-                    if (i != (numberDelete -1))
+                    if (i != (numberDelete - 1))
                     {
                         temp[position] = array[i];
                         position++;
@@ -106,7 +109,10 @@ namespace Task_28_Dossier
                 array = temp;
 
             }
-            else Console.WriteLine("\nВ досье ещё нет данных\n");
+            else 
+            {
+                Console.WriteLine("\nВ досье ещё нет данных\n");
+            } 
         }
         static void Search (string[] firstArray, string[] secondArray)
         {
@@ -114,27 +120,31 @@ namespace Task_28_Dossier
             {
                 Console.WriteLine("\nВведите фамилию: \n");
                 string surnameSearch = Console.ReadLine();
-                bool found = true;
-                bool found2 = true;
+                bool isFound = false;
+                bool isNotFound = true;
 
                 for (int i = 0; i < firstArray.Length; i++)
                 {
                     if (firstArray[i] == surnameSearch)
                     {
-                        if (found2 == true)
+                        if (isFound == false)
                         {
                             Console.WriteLine("\nНайдено следующее: \n");
-                            found2 = false;
+                            isFound = true;
                         }
                         Console.WriteLine($"{i + 1}. {firstArray[i]}-{secondArray[i]}");
-                        found = false;
+                        isNotFound = false;
                     }
                 }
-                if (found == true)
+                if (isNotFound == true)
+                {
                     Console.WriteLine("\nФамилия не найдена\n");
-
+                }
             }
-            else Console.WriteLine("\nВ досье ещё нет данных\n");
+            else 
+            {
+                Console.WriteLine("\nВ досье ещё нет данных\n");
+            }
         }
     }
 }
