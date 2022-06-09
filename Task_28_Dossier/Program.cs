@@ -10,61 +10,70 @@ namespace Task_28_Dossier
     {
         static void Main(string[] args)
         {
-            string[] listSurname = new string[0];
-            string[] listPost = new string[0];
-            int exit = 1;
+            string[] surnames = new string[0];
+            string[] posts = new string[0];
+            bool isWork = true;
 
-            while (exit == 1)
+            while (isWork == true)
             {
                 Console.WriteLine("\n1. Добавить досье \n2. Вывести все досье \n3. Удалить досье \n4. Поиск по фамилии \n\n0. Выход\n");
-                int userInput = int.Parse(Console.ReadLine());
+                string userInput = Console.ReadLine();
                 
                 switch (userInput)
                 {
-                    case 1:
-                        Create(ref listSurname, ref listPost);
+                    case "1":
+                        CreateDossier(ref surnames, ref posts);
                         break;
 
-                    case 2:
-                        Output (listSurname, listPost);
+                    case "2":
+                        OutputInfoDossier (surnames, posts);
                         break;
 
-                    case 3:
-                        Delete(ref listSurname, ref listPost);  
+                    case "3":
+                        DeleteDossier(ref surnames, ref posts);  
                         break;
 
-                    case 4:
-                        Search(listSurname, listPost);
+                    case "4":
+                        SearchDossier(surnames, posts);
                         break;
 
-                    case 0:
-                        exit = 0;
+                    case "0":
+                        isWork = false;
                         break;
                 }
             }
         }
 
-        static void Create (ref string[] firstArray, ref string[] secondArray)
+        static void CreateDossier (ref string[] surnames, ref string[] posts)
         {
             Console.WriteLine("\nВведите фамилию: \n");
             string surname = Console.ReadLine();
-            Expansion(surname, ref firstArray);
+            ExpandArray(surname, ref surnames);
             Console.WriteLine("\nВведите должность: \n");
             string post = Console.ReadLine();
-            Expansion(post, ref secondArray);
+            ExpandArray(post, ref posts);
 
             Console.WriteLine("\nДанные добавлены!");
         }
-        static void Delete (ref string[] firstArray, ref string[] secondArray)
-        {
-            Console.WriteLine("\nВведите номер досье для удаления: \n");
-            int numberDelete = int.Parse(Console.ReadLine());
-            Reduction(numberDelete, ref firstArray);
-            Reduction(numberDelete, ref secondArray);
 
-            Console.WriteLine("\nДанные удалены!");
+        static void DeleteDossier (ref string[] firstArray, ref string[] secondArray)
+        {
+            if (firstArray.Length != 0)
+            {
+                Console.WriteLine("\nВведите номер досье для удаления: \n");
+                int numberDelete = int.Parse(Console.ReadLine());
+                ReduceArray(numberDelete, ref firstArray);
+                ReduceArray(numberDelete, ref secondArray);
+
+                Console.WriteLine("\nДанные удалены!");
+            }
+            else
+            {
+                Console.WriteLine("\nВ досье ещё нет данных\n");
+            }
         }
-        static void Expansion (string word, ref string[] array)
+
+        static void ExpandArray (string word, ref string[] array)
         {
             string[] temp = new string[array.Length + 1];
 
@@ -76,7 +85,8 @@ namespace Task_28_Dossier
             temp[temp.Length - 1] = word;
             array = temp;
         }
-        static void Output (string[] firstArray, string[] secondArray)
+
+        static void OutputInfoDossier (string[] firstArray, string[] secondArray)
         {
             if (firstArray.Length != 0)
             {
@@ -90,7 +100,8 @@ namespace Task_28_Dossier
                 Console.WriteLine("\nВ досье ещё нет данных\n");
             } 
         }
-        static void Reduction (int numberDelete, ref string[] array)
+
+        static void ReduceArray (int numberDelete, ref string[] array)
         {
             if (array.Length != 0)
             {
@@ -114,7 +125,8 @@ namespace Task_28_Dossier
                 Console.WriteLine("\nВ досье ещё нет данных\n");
             } 
         }
-        static void Search (string[] firstArray, string[] secondArray)
+
+        static void SearchDossier (string[] firstArray, string[] secondArray)
         {
             if (firstArray.Length != 0)
             {
